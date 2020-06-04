@@ -16,6 +16,12 @@
 #define DEACTVE_AUDIO_MS 350
 
 /**
+ * @brief Output level to command relais
+ */
+#define LEVEL_ON  false
+#define LEVEL_OFF  true
+
+/**
  * @brief TimeExpired: compute if (interval) is elapsed form (start) to millis().
  * 
  * @param start starting time
@@ -44,8 +50,8 @@ void setup() {
    * @brief Start Output state
    * 
    */
-  digitalWrite(OUT_AUDIO, false);
-  digitalWrite(OUT_PTT, false);
+  digitalWrite(OUT_AUDIO, LEVEL_OFF);
+  digitalWrite(OUT_PTT, LEVEL_OFF);
 
 
 }
@@ -59,8 +65,8 @@ void loop() {
    */
   if (digitalRead(INP_SIGNAL) == 0) {
     StartWait = millis();
-    digitalWrite(OUT_AUDIO, true);
-    digitalWrite(OUT_PTT, true);
+    digitalWrite(OUT_AUDIO, LEVEL_ON);
+    digitalWrite(OUT_PTT, LEVEL_ON);
   }
   else {
   /**
@@ -68,9 +74,9 @@ void loop() {
    * 
    */
     if (TimeExpired(StartWait, DEACTIVE_PTT_MS)) 
-      digitalWrite(OUT_PTT, false);
+      digitalWrite(OUT_PTT, LEVEL_OFF);
     
     if (TimeExpired(StartWait, DEACTVE_AUDIO_MS)) 
-      digitalWrite(OUT_AUDIO, false);  
+      digitalWrite(OUT_AUDIO, LEVEL_OFF);  
   }
 }
