@@ -12,7 +12,7 @@
  * @brief Define Timings
  * 
  */
-#define DEACTIVE_PTT_MS 250
+#define DEACTIVE_PTT_MS 1000
 #define DEACTVE_AUDIO_MS 350
 
 /**
